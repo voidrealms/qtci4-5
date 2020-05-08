@@ -15,7 +15,8 @@ bool put(QString path, QByteArray data, QIODevice::OpenMode mode) {
     }
 
     qint64 bytes = file.write(data);
-    if(!bytes) {
+    //Video used "if(!bytes)" which can be dangerous
+    if(bytes > 0) {
         qWarning() << file.errorString();
     } else {
         qInfo() << "Wrote " << bytes << " to the file!";
